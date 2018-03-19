@@ -12,4 +12,16 @@
     <artifactId>domain</artifactId>
 
 
+    <dependencies>
+        <dependency>
+            <groupId>com.barbeqjue.digibooky</groupId>
+            <artifactId>services</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+            <version>2.0.0.RELEASE</version>
+        </dependency>
+    </dependencies>
+
 </project>
