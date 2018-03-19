@@ -44,7 +44,6 @@ public class BookRepository {
         return Collections.unmodifiableList(bookSearchResults);
     }
 
-
     public List<Book> getBookByAuthor(String authorLastNameRegex) {
         List<Book> bookSearchResults = new ArrayList<>();
         for (int id : books.keySet()) {
@@ -55,8 +54,22 @@ public class BookRepository {
         return Collections.unmodifiableList(bookSearchResults);
     }
 
+    public Book storeBook(Book book) {
+        book.setId(bookIndex++);
+        books.put(book.getId(), book);
+        return book;
+    }
 
+    public void deleteBook(int id) {
+        books.remove(id);
+    }
 
+    public Book updateBook(int id, Book book) {
+        books.put(id, book);
+        return book;
+    }
 
-
+    public List<Book> getAllBooks() {
+        return Collections.unmodifiableList(new ArrayList<>(books.values()));
+    }
 }
