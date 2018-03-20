@@ -11,6 +11,8 @@ public class MemberDto {
     private String postalCode;
     private String city;
 
+    private MemberDto(){}
+
     public static MemberDto memberDto (){
         return new MemberDto();
     }
@@ -95,4 +97,6 @@ public class MemberDto {
     public String getCity() {
         return city;
     }
+
+
 }

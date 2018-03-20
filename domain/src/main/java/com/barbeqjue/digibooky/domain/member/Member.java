@@ -69,6 +69,18 @@ public class Member {
         return lastName;
     }
 
+    public String getStreetName() {
+        return streetName;
+    }
+
+    public String getStreetNumber() {
+        return streetNumber;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
     public static class MemberBuilder{
         private Integer id;
         private String inss;
@@ -125,17 +137,17 @@ public class Member {
             return this;
         }
 
-        public MemberBuilder withStreetName(String StreetName){
+        public MemberBuilder withStreetName(String streetName){
             this.streetName = streetName;
             return this;
         }
 
-        public MemberBuilder withStreetNumber(String StreetNumber){
+        public MemberBuilder withStreetNumber(String streetNumber){
             this.streetNumber = streetNumber;
             return this;
         }
 
-        public MemberBuilder withPostalCode(String PostalCode){
+        public MemberBuilder withPostalCode(String postalCode){
             this.postalCode = postalCode;
             return this;
         }
