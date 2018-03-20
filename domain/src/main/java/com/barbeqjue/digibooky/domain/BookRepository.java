@@ -1,7 +1,9 @@
 package com.barbeqjue.digibooky.domain;
 
+import javax.inject.Named;
 import java.util.*;
 
+@Named
 public class BookRepository {
     private Map<Integer, Book> books;
     private static int bookIndex = 0;
@@ -10,8 +12,27 @@ public class BookRepository {
         this.books = new HashMap<>();
     }
 
-    public Book getBookById(int id) {
+    public Book storeBook(Book book) {
+        book.setId(bookIndex++);
+        books.put(book.getId(), book);
+        return book;
+    }
+
+    public List<Book> getAllBooks() {
+        return Collections.unmodifiableList(new ArrayList<>(books.values()));
+    }
+
+    public Book getBookById(Integer id) {
         return books.get(id);
+    }
+
+    public Book updateBook(int id, Book updatedbook) {
+        books.put(id, updatedbook);
+        return updatedbook;
+    }
+
+    public void deleteBook(int id) {
+        books.remove(id);
     }
 
     public List<Book> getBookByIsbn(String isbnRegex) {
@@ -52,24 +73,5 @@ public class BookRepository {
             }
         }
         return Collections.unmodifiableList(bookSearchResults);
-    }
-
-    public Book storeBook(Book book) {
-        book.setId(bookIndex++);
-        books.put(book.getId(), book);
-        return book;
-    }
-
-    public void deleteBook(int id) {
-        books.remove(id);
-    }
-
-    public Book updateBook(int id, Book book) {
-        books.put(id, book);
-        return book;
-    }
-
-    public List<Book> getAllBooks() {
-        return Collections.unmodifiableList(new ArrayList<>(books.values()));
     }
 }
