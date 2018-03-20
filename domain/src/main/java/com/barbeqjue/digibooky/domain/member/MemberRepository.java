@@ -1,7 +1,10 @@
-package com.barbeqjue.digibooky.domain;
+package com.barbeqjue.digibooky.domain.member;
 
+import javax.inject.Named;
 import java.util.*;
 
+
+@Named
 public class MemberRepository {
     private static int databaseIndex = 0;
     private Map<Integer, Member> members;

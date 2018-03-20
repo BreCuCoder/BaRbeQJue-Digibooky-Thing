@@ -1,4 +1,4 @@
-package com.barbeqjue.digibooky.domain;
+package com.barbeqjue.digibooky.domain.member;
 
 public class Member {
     private Integer id;
@@ -149,7 +149,7 @@ public class Member {
 
     }
 
-
-
-
+    public String getFirstName() {
+        return firstName;
+    }
 }

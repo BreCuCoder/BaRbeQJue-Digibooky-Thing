@@ -1,4 +1,4 @@
-package com.barbeqjue.digibooky.domain;
+package com.barbeqjue.digibooky.domain.member;
 
 public class MemberTestBuilder {
     private Integer id;
