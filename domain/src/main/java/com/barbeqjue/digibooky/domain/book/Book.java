@@ -1,4 +1,6 @@
-package com.barbeqjue.digibooky.domain;
+package com.barbeqjue.digibooky.domain.book;
+
+import com.barbeqjue.digibooky.domain.Author;
 
 public class Book {
 
