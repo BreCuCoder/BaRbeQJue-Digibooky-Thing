@@ -1,4 +1,4 @@
-package com.barbeqjue.digibooky.api;
+package com.barbeqjue.digibooky.api.book;
 
 import com.barbeqjue.digibooky.services.exceptions.IllegalFieldFoundException;
 import com.barbeqjue.digibooky.services.exceptions.UnknownResourceException;
