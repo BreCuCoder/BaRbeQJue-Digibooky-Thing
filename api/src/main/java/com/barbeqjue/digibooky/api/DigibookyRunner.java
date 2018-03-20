@@ -7,11 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @ComponentScan({"com.barbeqjue.digibooky.domain","com.barbeqjue.digibooky.services","com.barbeqjue.digibooky.api"})
 @SpringBootApplication
-
-
 public class DigibookyRunner {
-
-
 
     public static void main(String[] args) {
 
