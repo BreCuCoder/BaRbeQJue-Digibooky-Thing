@@ -1,12 +1,12 @@
 package com.barbeqjue.digibooky.api.book;
 
 import com.barbeqjue.digibooky.domain.Author;
-import com.barbeqjue.digibooky.domain.Book;
+import com.barbeqjue.digibooky.domain.book.Book;
 import org.junit.Before;
 import org.junit.Test;
 
 import static com.barbeqjue.digibooky.api.book.BookDto.bookDto;
-import static com.barbeqjue.digibooky.domain.Book.BookBuilder.book;
+import static com.barbeqjue.digibooky.domain.book.Book.BookBuilder.book;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class BookMapperTest {

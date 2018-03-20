@@ -1,10 +1,10 @@
 package com.barbeqjue.digibooky.api.book;
 
-import com.barbeqjue.digibooky.domain.Book;
+import com.barbeqjue.digibooky.domain.book.Book;
 
 import javax.inject.Named;
 
-import static com.barbeqjue.digibooky.domain.Book.BookBuilder.book;
+import static com.barbeqjue.digibooky.domain.book.Book.BookBuilder.book;
 
 @Named
 public class BookMapper {

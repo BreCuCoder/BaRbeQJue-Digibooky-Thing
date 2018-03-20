@@ -1,5 +1,8 @@
-package com.barbeqjue.digibooky.domain;
+package com.barbeqjue.digibooky.domain.book;
 
+import com.barbeqjue.digibooky.domain.Author;
+import com.barbeqjue.digibooky.domain.book.Book;
+import com.barbeqjue.digibooky.domain.book.BookRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import java.util.List;

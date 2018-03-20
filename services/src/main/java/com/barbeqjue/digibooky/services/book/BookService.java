@@ -1,7 +1,7 @@
-package com.barbeqjue.digibooky.services;
+package com.barbeqjue.digibooky.services.book;
 
-import com.barbeqjue.digibooky.domain.Book;
-import com.barbeqjue.digibooky.domain.BookRepository;
+import com.barbeqjue.digibooky.domain.book.Book;
+import com.barbeqjue.digibooky.domain.book.BookRepository;
 import com.barbeqjue.digibooky.services.exceptions.IllegalFieldFoundException;
 import com.barbeqjue.digibooky.services.exceptions.IllegalFieldFoundException.CrudAction;
 import com.barbeqjue.digibooky.services.exceptions.UnknownResourceException;
