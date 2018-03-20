@@ -1,4 +1,4 @@
-package com.barbeqjue.digibooky.domain;
+package com.barbeqjue.digibooky.domain.book;
 
 import javax.inject.Named;
 import java.util.*;

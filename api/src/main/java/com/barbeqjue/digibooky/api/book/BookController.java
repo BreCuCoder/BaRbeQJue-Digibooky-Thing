@@ -1,6 +1,6 @@
 package com.barbeqjue.digibooky.api.book;
 
-import com.barbeqjue.digibooky.services.BookService;
+import com.barbeqjue.digibooky.services.book.BookService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +13,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RestController
 @RequestMapping(path = "/books")
 public class BookController {
-
+ 
     private BookService bookService;
     private BookMapper bookMapper;
 
