@@ -1,7 +1,16 @@
 /**
  * CONSTANTS
  */
-const ALL_BOOKS_URL = "https://api.coinmarketcap.com/v1/ticker/?limit=24";
+const BOOKS_RESOURCE = "http://localhost:9123/books";
+const BOOKDTO =
+    `{
+        "isbn": "161729520X", 
+        "title": "Spring in Action",
+        "author": {
+            "firstName": "Craig", 
+            "lastName": "Walls"
+        }
+    }`;
 
 /**
  * ------------------
@@ -9,8 +18,9 @@ const ALL_BOOKS_URL = "https://api.coinmarketcap.com/v1/ticker/?limit=24";
  * ------------------
  */
 $(document).ready(function () {
-    showCrypto();
+    showBooks();
     searchForIsbn();
+    addARandomBook();
 });
 
 /**
@@ -20,18 +30,41 @@ $(document).ready(function () {
  */
 function searchForIsbn() {
     $("#isbn-search-button").click(function () {
-        alert("You want to search for a book with ISBN: " + $("#isbn-search-input").val());
+        alert("(not yet implemented) You want to search for a book with ISBN: " + $("#isbn-search-input").val());
     });
 }
 
-function showCrypto() {
+function addARandomBook() {
+    $("#add-random-book-button").click(function () {
+        $.ajax({
+            type: 'POST',
+            url: BOOKS_RESOURCE,
+            data: BOOKDTO,
+            success: function () {
+                showBooks();
+            },
+            error: function() {
+                alert("It didn't work!!");
+            },
+            contentType: "application/json",
+            dataType: 'json'
+        });
+    });
+}
+
+function showBooks() {
     console.log("Calling backend!");
-    $.getJSON(ALL_BOOKS_URL, function (data) {
+    $.getJSON(BOOKS_RESOURCE, function (data) {
         console.log("--> Great success!");
         console.log(data);
-        data.forEach(function (item) {
-            $("#injectable").append(VIEW.renderSingleItem(item), null);
-        });
+        if (data.length > 0) {
+            $("#injectable").empty();
+            data.forEach(function (item) {
+                $("#injectable").append(VIEW.renderSingleItem(item), null);
+            });
+        } else {
+            $("#injectable").append("<p>There are no books... Please add some books!</p>", null);
+        }
     })
         .done(function () {
             console.log("--> I'm done (successfully)");
@@ -50,12 +83,14 @@ function showCrypto() {
  * ------------------
  */
 const VIEW = {
-    renderSingleItem: (function (item) {
+    renderSingleItem: (function (book) {
         return `<div class="col-lg-3">
                     <div class="card">
+                      <img class="card-img-top img-fluid" src="https://picsum.photos/200" alt="${book.title}">
                       <div class="card-body">
-                        <h4 class="card-title">${item.name}</h4>
-                        <p class="card-text">Price in USD: ${item.price_usd}</p>
+                        <h4 class="card-title">${book.title}</h4>
+                        <h5 class="card-subtitle mb-2 text-muted">${book.author.firstName} ${book.author.lastName}</h5>
+                        <p class="card-text">ISBN: ${book.isbn}</p>
                       </div>
                     </div>
                 </div>
