@@ -1,16 +1,11 @@
-package com.barbeqjue.digibooky.domain.actor.person;
+package com.barbeqjue.digibooky.domain.actor;
 
-public class Person {
-    private Integer id;
+public class HumanInfo {
     private String firstName;
     private String lastName;
     private String email;
 
-    private Person(){}
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    private HumanInfo(){}
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -24,9 +19,6 @@ public class Person {
         this.email = email;
     }
 
-    public Integer getId() {
-        return id;
-    }
 
     public String getFirstName() {
         return firstName;
@@ -40,43 +32,42 @@ public class Person {
         return email;
     }
 
-    public static class PersonBuilder{
+    public static class HumanInfoBuilder{
         private Integer id;
         private String firstName;
         private String lastName;
         private String email;
 
-        private PersonBuilder(){}
+        private HumanInfoBuilder(){}
 
-        public static PersonBuilder person(){
-            return new PersonBuilder();
+        public static HumanInfoBuilder humanInfo(){
+            return new HumanInfoBuilder();
         }
 
-        public Person build(){
-            Person person = new Person();
-            person.setId(id);
-            person.setFirstName(firstName);
-            person.setLastName(lastName);
-            person.setEmail(email);
-            return person;
+        public HumanInfo build(){
+            HumanInfo humanInfo = new HumanInfo();
+            humanInfo.setFirstName(firstName);
+            humanInfo.setLastName(lastName);
+            humanInfo.setEmail(email);
+            return humanInfo;
         }
 
-        public PersonBuilder withId(Integer id){
+        public HumanInfoBuilder withId(Integer id){
             this.id = id;
             return this;
         }
 
-        public PersonBuilder withFirstName(String firstName){
+        public HumanInfoBuilder withFirstName(String firstName){
             this.firstName = firstName;
             return this;
         }
 
-        public PersonBuilder withLastName(String lastName){
+        public HumanInfoBuilder withLastName(String lastName){
             this.lastName = lastName;
             return this;
         }
 
-        public PersonBuilder withEmail(String email){
+        public HumanInfoBuilder withEmail(String email){
             this.email = email;
             return this;
         }

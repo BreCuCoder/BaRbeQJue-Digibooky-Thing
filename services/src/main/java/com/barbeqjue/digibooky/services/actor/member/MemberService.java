@@ -18,6 +18,8 @@ public class MemberService {
 
     public Member createMember (Member providedMember){
         assertINSSIsValid(providedMember);
+        assertEmailIsValid(providedMember);
+        assertLastNameisValid(providedMember);
         assertCityisValid(providedMember);
         return memberRepository.storeMember(providedMember);
 
@@ -45,6 +47,21 @@ public class MemberService {
                 .filter(member -> member.getInss().equals(providedMember.getInss()))
                 .collect(Collectors.toList()).isEmpty()){
             throw new IllegalArgumentException("This INSS number is already in the database");
+        }
+    }
+
+    private void assertEmailIsValid(Member providedMember){
+        if (providedMember.getHumanInfo().getEmail() == null || providedMember.getHumanInfo().getEmail().length() == 0){
+            throw new IllegalArgumentException("You have to provide an Email");
+        }
+        if (!providedMember.getHumanInfo().getEmail().matches("[\\w]{1,}@[\\w]{1,}\\.[\\w]{1,}")){
+            throw new IllegalArgumentException("Your email format is not recognized");
+        }
+    }
+
+    private void assertLastNameisValid (Member providedMember){
+        if (providedMember.getHumanInfo().getLastName() == null || providedMember.getHumanInfo().getLastName().length() == 0){
+            throw new IllegalArgumentException( "You have to provide a last name");
         }
     }
 

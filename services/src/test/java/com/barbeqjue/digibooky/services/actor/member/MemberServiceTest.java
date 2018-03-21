@@ -1,9 +1,9 @@
 package com.barbeqjue.digibooky.services.actor.member;
 
+import com.barbeqjue.digibooky.domain.actor.HumanInfo;
 import com.barbeqjue.digibooky.domain.actor.member.Member;
 import com.barbeqjue.digibooky.domain.actor.member.MemberRepository;
-import com.barbeqjue.digibooky.domain.actor.person.Person;
-import com.barbeqjue.digibooky.services.actor.member.MemberService;
+import com.barbeqjue.digibooky.domain.actor.moderator.Moderator;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,8 +24,7 @@ public class MemberServiceTest {
     @Test
     public void createMember_HappyPath() {
         Member providedMember = Member.MemberBuilder.member()
-                .withPerson(Person.PersonBuilder.person()
-                        .withId(1)
+                .withHumanInfo(HumanInfo.HumanInfoBuilder.humanInfo()
                         .withLastName("Rens")
                         .withEmail("quentinrens@hotmail.com")
                         .build())
@@ -34,7 +33,7 @@ public class MemberServiceTest {
                 .build();
 
         Member expectedMember = Member.MemberBuilder.member()
-                .withPerson(providedMember.getPerson())
+                .withHumanInfo(providedMember.getHumanInfo())
                 .withInss(providedMember.getInss())
                 .withCity(providedMember.getCity())
                 .build();

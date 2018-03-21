@@ -2,9 +2,9 @@ package com.barbeqjue.digibooky.api.actor.member;
 
 
 import com.barbeqjue.digibooky.api.DigibookyRunner;
-import com.barbeqjue.digibooky.api.actor.member.MemberDto;
+import com.barbeqjue.digibooky.domain.actor.HumanInfo;
 import com.barbeqjue.digibooky.domain.actor.member.MemberRepository;
-import com.barbeqjue.digibooky.domain.actor.person.Person;
+import com.barbeqjue.digibooky.domain.actor.moderator.Moderator;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,7 +31,7 @@ public class MemberControllerIntegrationTest {
         MemberDto memberDto = new TestRestTemplate()
                 .postForObject(String.format("http://localhost:%s/%s", port, "members"),
                         MemberDto.memberDto()
-                                .withPerson(Person.PersonBuilder.person()
+                                .withHumanInfo(HumanInfo.HumanInfoBuilder.humanInfo()
                                         .withEmail("rensquentin@hotmail.com")
                                         .withLastName("Rens")
                                         .build())
@@ -39,8 +39,8 @@ public class MemberControllerIntegrationTest {
                                 .withCity("Charleroi"),
                         MemberDto.class);
 
-        Assertions.assertThat(memberDto.getPerson().getEmail()).isEqualTo("rensquentin@hotmail.com");
-        Assertions.assertThat(memberDto.getPerson().getLastName()).isEqualTo("Rens");
+        Assertions.assertThat(memberDto.getHumanInfo().getEmail()).isEqualTo("rensquentin@hotmail.com");
+        Assertions.assertThat(memberDto.getHumanInfo().getLastName()).isEqualTo("Rens");
         Assertions.assertThat(memberDto.getInss()).isEqualTo("44444");
         Assertions.assertThat(memberDto.getCity()).isEqualTo("Charleroi");
 

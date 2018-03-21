@@ -1,21 +1,19 @@
 package com.barbeqjue.digibooky.domain.actor.member;
 
-import com.barbeqjue.digibooky.domain.actor.member.Member;
-
 import javax.inject.Named;
 import java.util.*;
 
 
 @Named
 public class MemberRepository {
-    private Map<Integer, Member> members;
+    private Map<UUID, Member> members;
 
     public MemberRepository(){
         members = new HashMap<>();
     }
 
     public Member storeMember(Member member){
-        members.put(member.getPerson().getId(), member);
+        members.put(member.getId(), member);
         return member;
     }
 
@@ -28,7 +26,7 @@ public class MemberRepository {
     }
 
     public Member updateMember(Member updatedMember) {
-        members.put(updatedMember.getPerson().getId(), updatedMember);
+        members.put(updatedMember.getId(), updatedMember);
         return updatedMember;
     }
 

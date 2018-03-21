@@ -1,10 +1,13 @@
 package com.barbeqjue.digibooky.domain.actor.member;
 
-import com.barbeqjue.digibooky.domain.actor.person.Person;
+import com.barbeqjue.digibooky.domain.actor.HumanInfo;
+
+import java.util.UUID;
 
 
 public class Member {
-    private Person person;
+    private UUID id;
+    private HumanInfo humanInfo;
     private String inss;
     private String streetName;
     private String streetNumber;
@@ -13,14 +16,18 @@ public class Member {
 
     private Member(){}
 
-    public void setPerson(Person person) {
-        this.person = person;
+    public void setId(UUID id) {
+        this.id = id;
     }
 
+    public void setHumanInfo(HumanInfo humanInfo) {
+        this.humanInfo = humanInfo;
+    }
 
     public void setInss(String inss) {
         this.inss = inss;
     }
+
     public void setStreetName(String streetName) {
         this.streetName = streetName;
     }
@@ -37,8 +44,12 @@ public class Member {
         this.city = city;
     }
 
-    public Person getPerson() {
-        return person;
+    public UUID getId() {
+        return id;
+    }
+
+    public HumanInfo getHumanInfo() {
+        return humanInfo;
     }
 
     public String getInss() {
@@ -62,7 +73,8 @@ public class Member {
     }
 
     public static class MemberBuilder{
-        private Person person;
+        private UUID id;
+        private HumanInfo humanInfo;
         private String inss;
         private String streetName;
         private String streetNumber;
@@ -77,7 +89,8 @@ public class Member {
 
         public Member build(){
             Member member = new Member();
-            member.setPerson(person);
+            member.setId(id);
+            member.setHumanInfo(humanInfo);
             member.setInss(inss);
             member.setStreetName(streetName);
             member.setStreetNumber(streetNumber);
@@ -86,13 +99,18 @@ public class Member {
             return member;
         }
 
-        public MemberBuilder withInss(String inss){
-            this.inss = inss;
+        public MemberBuilder withId (UUID id){
+            this.id = id;
             return this;
         }
 
-        public MemberBuilder withPerson (Person person) {
-            this.person = person;
+        public MemberBuilder withHumanInfo (HumanInfo humanInfo){
+            this.humanInfo = humanInfo;
+            return this;
+        }
+
+        public MemberBuilder withInss(String inss){
+            this.inss = inss;
             return this;
         }
 
