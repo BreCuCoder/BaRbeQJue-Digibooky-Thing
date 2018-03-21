@@ -2,10 +2,7 @@ package com.barbeqjue.digibooky.api.member;
 
 import com.barbeqjue.digibooky.services.member.MemberService;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 
@@ -26,10 +23,7 @@ public class MemberController {
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public MemberDto registerMember (MemberDto memberDto){
-        if (memberDto.getEmail() == null){
-            throw new IllegalArgumentException("Oupsi");
-        }
+    public MemberDto registerMember (@RequestBody MemberDto memberDto){
         return memberMapper.toDto(memberService.createMember(memberMapper.toDomain(memberDto)));
     }
 }
