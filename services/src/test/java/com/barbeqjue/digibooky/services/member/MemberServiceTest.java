@@ -1,7 +1,8 @@
-package com.barbeqjue.digibooky.services;
+package com.barbeqjue.digibooky.services.member;
 
-import com.barbeqjue.digibooky.domain.Member;
-import com.barbeqjue.digibooky.domain.MemberRepository;
+import com.barbeqjue.digibooky.domain.member.Member;
+import com.barbeqjue.digibooky.domain.member.MemberRepository;
+import com.barbeqjue.digibooky.services.member.MemberService;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;

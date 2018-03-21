@@ -22,3 +22,5 @@ build
 node_modules/
 bin/
 obj/
+
+*.ser
