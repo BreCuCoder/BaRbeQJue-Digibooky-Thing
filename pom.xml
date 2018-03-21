@@ -13,6 +13,7 @@
         <module>api</module>
         <module>domain</module>
         <module>services</module>
+        <module>utilities</module>
     </modules>
 
     <dependencies>
