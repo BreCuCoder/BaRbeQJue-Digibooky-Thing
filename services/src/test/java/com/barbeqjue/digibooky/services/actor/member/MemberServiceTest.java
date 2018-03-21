@@ -1,8 +1,9 @@
-package com.barbeqjue.digibooky.services.member;
+package com.barbeqjue.digibooky.services.actor.member;
 
-import com.barbeqjue.digibooky.domain.member.Member;
-import com.barbeqjue.digibooky.domain.member.MemberRepository;
-import com.barbeqjue.digibooky.services.member.MemberService;
+import com.barbeqjue.digibooky.domain.actor.HumanInfo;
+import com.barbeqjue.digibooky.domain.actor.member.Member;
+import com.barbeqjue.digibooky.domain.actor.member.MemberRepository;
+import com.barbeqjue.digibooky.domain.actor.moderator.Moderator;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,17 +24,17 @@ public class MemberServiceTest {
     @Test
     public void createMember_HappyPath() {
         Member providedMember = Member.MemberBuilder.member()
+                .withHumanInfo(HumanInfo.HumanInfoBuilder.humanInfo()
+                        .withLastName("Rens")
+                        .withEmail("quentinrens@hotmail.com")
+                        .build())
                 .withInss("duhe")
-                .withEmail("quentinrens@hotmail.com")
-                .withLastName("Rens")
                 .withCity("Charleroi")
                 .build();
 
         Member expectedMember = Member.MemberBuilder.member()
-                .withId(1)
+                .withHumanInfo(providedMember.getHumanInfo())
                 .withInss(providedMember.getInss())
-                .withEmail(providedMember.getEmail())
-                .withLastName(providedMember.getLastName())
                 .withCity(providedMember.getCity())
                 .build();
 

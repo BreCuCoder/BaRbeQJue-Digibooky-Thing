@@ -1,4 +1,4 @@
-package com.barbeqjue.digibooky.domain.member;
+package com.barbeqjue.digibooky.domain.actor.member;
 
 import javax.inject.Named;
 import java.util.*;
@@ -6,15 +6,13 @@ import java.util.*;
 
 @Named
 public class MemberRepository {
-    private static int databaseIndex = 0;
-    private Map<Integer, Member> members;
+    private Map<UUID, Member> members;
 
     public MemberRepository(){
         members = new HashMap<>();
     }
 
     public Member storeMember(Member member){
-        member.setId(databaseIndex++);
         members.put(member.getId(), member);
         return member;
     }

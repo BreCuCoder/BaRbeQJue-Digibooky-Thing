@@ -1,7 +1,7 @@
-package com.barbeqjue.digibooky.services.member;
+package com.barbeqjue.digibooky.services.actor.member;
 
-import com.barbeqjue.digibooky.domain.member.Member;
-import com.barbeqjue.digibooky.domain.member.MemberRepository;
+import com.barbeqjue.digibooky.domain.actor.member.Member;
+import com.barbeqjue.digibooky.domain.actor.member.MemberRepository;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -25,6 +25,18 @@ public class MemberService {
 
     }
 
+    public Member getMember(Integer id) {
+        assertMemberIsPresent(memberRepository.getMember(id));
+        return memberRepository.getMember(id);
+    }
+
+    private void assertMemberIsPresent(Member queriedMemberById) {
+        if (queriedMemberById == null) {
+            throw new IllegalArgumentException("Member doesn't exist");
+        }
+    }
+
+
     private void assertINSSIsValid(Member providedMember){
         if (providedMember.getInss() == null){
             throw new IllegalArgumentException("You have to provide an INSS number");
@@ -39,16 +51,16 @@ public class MemberService {
     }
 
     private void assertEmailIsValid(Member providedMember){
-        if (providedMember.getEmail() == null || providedMember.getEmail().length() == 0){
+        if (providedMember.getHumanInfo().getEmail() == null || providedMember.getHumanInfo().getEmail().length() == 0){
             throw new IllegalArgumentException("You have to provide an Email");
         }
-        if (!providedMember.getEmail().matches("[\\w]{1,}@[\\w]{1,}\\.[\\w]{1,}")){
+        if (!providedMember.getHumanInfo().getEmail().matches("[\\w]{1,}@[\\w]{1,}\\.[\\w]{1,}")){
             throw new IllegalArgumentException("Your email format is not recognized");
         }
     }
 
     private void assertLastNameisValid (Member providedMember){
-        if (providedMember.getLastName() == null || providedMember.getLastName().length() == 0){
+        if (providedMember.getHumanInfo().getLastName() == null || providedMember.getHumanInfo().getLastName().length() == 0){
             throw new IllegalArgumentException( "You have to provide a last name");
         }
     }

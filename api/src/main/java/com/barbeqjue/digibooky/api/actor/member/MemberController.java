@@ -1,6 +1,7 @@
-package com.barbeqjue.digibooky.api.member;
+package com.barbeqjue.digibooky.api.actor.member;
 
-import com.barbeqjue.digibooky.services.member.MemberService;
+import com.barbeqjue.digibooky.services.actor.member.MemberService;
+import com.barbeqjue.digibooky.services.actor.moderator.ModeratorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
