@@ -100,18 +100,27 @@
             <plugin>
                 <groupId>org.openclover</groupId>
                 <artifactId>clover-maven-plugin</artifactId>
-                <version>${open.clover.version}</version>
+                <configuration>
+                    <generateXml>true</generateXml>
+                </configuration>
                 <executions>
                     <execution>
-                        <id>main</id>
-                        <phase>verify</phase>
+                        <id>clover-initialize</id>
+                        <phase>initialize</phase>
                         <goals>
-                            <goal>instrument</goal>
+                            <goal>setup</goal>
                             <goal>aggregate</goal>
                         </goals>
                     </execution>
                     <execution>
-                        <id>site</id>
+                        <id>clover-report</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>clover</goal>
+                            <goal>aggregate</goal>
+                        </goals>
+                    </execution>
+                    <execution>
                         <phase>pre-site</phase>
                         <goals>
                             <goal>instrument</goal>
