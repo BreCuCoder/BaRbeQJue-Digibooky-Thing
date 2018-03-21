@@ -2,6 +2,10 @@ package com.barbeqjue.digibooky.services.actor.member;
 
 import com.barbeqjue.digibooky.domain.actor.member.Member;
 import com.barbeqjue.digibooky.domain.actor.member.MemberRepository;
+import com.barbeqjue.digibooky.services.exceptions.EmptyFieldException;
+import com.barbeqjue.digibooky.services.exceptions.IllegalFieldFormatException;
+import com.barbeqjue.digibooky.services.exceptions.ResourceAlreadyPresentException;
+import com.barbeqjue.digibooky.services.exceptions.UnknownResourceException;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -32,42 +36,42 @@ public class MemberService {
 
     private void assertMemberIsPresent(Member queriedMemberById) {
         if (queriedMemberById == null) {
-            throw new IllegalArgumentException("Member doesn't exist");
+            throw new UnknownResourceException("ID", Member.class.getSimpleName());
         }
     }
 
 
     private void assertINSSIsValid(Member providedMember){
         if (providedMember.getInss() == null){
-            throw new IllegalArgumentException("You have to provide an INSS number");
+            throw new EmptyFieldException("INSS");
         }
         if (!memberRepository
                 .getMembers()
                 .stream()
                 .filter(member -> member.getInss().equals(providedMember.getInss()))
                 .collect(Collectors.toList()).isEmpty()){
-            throw new IllegalArgumentException("This INSS number is already in the database");
+            throw new ResourceAlreadyPresentException("ID", Member.class.getSimpleName());
         }
     }
 
     private void assertEmailIsValid(Member providedMember){
         if (providedMember.getHumanInfo().getEmail() == null || providedMember.getHumanInfo().getEmail().length() == 0){
-            throw new IllegalArgumentException("You have to provide an Email");
+            throw new EmptyFieldException("Email");
         }
         if (!providedMember.getHumanInfo().getEmail().matches("[\\w]{1,}@[\\w]{1,}\\.[\\w]{1,}")){
-            throw new IllegalArgumentException("Your email format is not recognized");
+            throw new IllegalFieldFormatException("email");
         }
     }
 
     private void assertLastNameisValid (Member providedMember){
         if (providedMember.getHumanInfo().getLastName() == null || providedMember.getHumanInfo().getLastName().length() == 0){
-            throw new IllegalArgumentException( "You have to provide a last name");
+            throw new EmptyFieldException("Last Name");
         }
     }
 
     private void assertCityisValid (Member providedMember){
         if (providedMember.getCity() == null || providedMember.getCity().length() == 0){
-            throw new IllegalArgumentException( "You have to provide a last name");
+            throw new EmptyFieldException("City");
         }
     }
 }
