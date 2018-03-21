@@ -1,13 +1,17 @@
-package com.barbeqjue.digibooky.services;
+package com.barbeqjue.digibooky.services.member;
 
-import com.barbeqjue.digibooky.domain.Member;
-import com.barbeqjue.digibooky.domain.MemberRepository;
+import com.barbeqjue.digibooky.domain.member.Member;
+import com.barbeqjue.digibooky.domain.member.MemberRepository;
 
+import javax.inject.Inject;
+import javax.inject.Named;
 import java.util.stream.Collectors;
 
+@Named
 public class MemberService {
     private final MemberRepository memberRepository;
 
+    @Inject
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
