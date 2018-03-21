@@ -9,6 +9,7 @@ public class BookTestBuilder {
     private String isbn;
     private String title;
     private Author author;
+    private BookStatus bookStatus;
 
     private BookTestBuilder() {
         id = 0;
@@ -53,6 +54,11 @@ public class BookTestBuilder {
 
     public BookTestBuilder withAuthor(Author author) {
         this.author = author;
+        return this;
+    }
+
+    public BookTestBuilder withBookStatus(BookStatus bookStatus) {
+        this.bookStatus = bookStatus;
         return this;
     }
 }

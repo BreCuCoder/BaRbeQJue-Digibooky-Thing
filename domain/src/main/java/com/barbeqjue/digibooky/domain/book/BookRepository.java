@@ -19,7 +19,13 @@ public class BookRepository {
     }
 
     public List<Book> getAllBooks() {
-        return Collections.unmodifiableList(new ArrayList<>(books.values()));
+        List<Book> allActiveBooks = new ArrayList<>();
+        for(int id : books.keySet()) {
+            if(books.get(id).getBookStatus().equals(BookStatus.ACTIVE)) {
+                allActiveBooks.add(books.get(id));
+            }
+        }
+        return Collections.unmodifiableList(allActiveBooks);
     }
 
     public Book getBookById(Integer id) {
@@ -32,7 +38,8 @@ public class BookRepository {
     }
 
     public void deleteBook(int id) {
-        books.remove(id);
+        books.get(id).setBookStatus(BookStatus.DECOMMISSIONED);
+//        books.remove(id);
     }
 
     public List<Book> getBookByIsbn(String isbnRegex) {
