@@ -13,6 +13,7 @@ public class MemberRepository {
     }
 
     public Member storeMember(Member member){
+        member.setId(UUID.randomUUID());
         members.put(member.getId(), member);
         return member;
     }
@@ -32,5 +33,9 @@ public class MemberRepository {
 
     public void deleteMember(Integer idToRemove) {
         members.remove(idToRemove);
+    }
+
+    public void clear(){
+        members.clear();
     }
 }

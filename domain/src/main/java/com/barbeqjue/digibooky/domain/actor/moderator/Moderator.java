@@ -7,11 +7,7 @@ import java.util.UUID;
 public class Moderator {
     private UUID id;
     private HumanInfo humanInfo;
-
-
-    private String firstName;
-    private String lastName;
-    private String email;
+    private Status status;
 
     private Moderator(){}
 
@@ -23,6 +19,10 @@ public class Moderator {
         this.humanInfo = humanInfo;
     }
 
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
     public UUID getId() {
         return id;
     }
@@ -31,14 +31,19 @@ public class Moderator {
         return humanInfo;
     }
 
+    public Status getStatus() {
+        return status;
+    }
+
     public static class ModeratorBuilder {
         private UUID id;
         private HumanInfo humanInfo;
+        private Status status;
 
 
         private ModeratorBuilder(){}
 
-        public static ModeratorBuilder person(){
+        public static ModeratorBuilder moderator(){
             return new ModeratorBuilder();
         }
 
@@ -46,6 +51,7 @@ public class Moderator {
             Moderator moderator = new Moderator();
             moderator.setId(id);
             moderator.setHumanInfo(humanInfo);
+            moderator.setStatus(status);
             return moderator;
         }
 
@@ -56,6 +62,11 @@ public class Moderator {
 
         public ModeratorBuilder withHumanInfo (HumanInfo humanInfo){
             this.humanInfo = humanInfo;
+            return this;
+        }
+
+        public ModeratorBuilder withStatus (Status status) {
+            this.status = status;
             return this;
         }
 

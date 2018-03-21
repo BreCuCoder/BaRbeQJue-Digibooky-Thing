@@ -34,6 +34,11 @@ public class MemberDto {
         return this;
     }
 
+    public MemberDto withoutInss(){
+        this.inss = null;
+        return this;
+    }
+
     public MemberDto withStreetName(String streetName){
         this.streetName = streetName;
         return this;

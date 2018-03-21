@@ -9,6 +9,7 @@ import com.barbeqjue.digibooky.services.exceptions.UnknownResourceException;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Named
@@ -27,6 +28,10 @@ public class MemberService {
         assertCityisValid(providedMember);
         return memberRepository.storeMember(providedMember);
 
+    }
+
+    public List<Member> getMembers() {
+        return memberRepository.getMembers();
     }
 
     public Member getMember(Integer id) {

@@ -41,6 +41,28 @@ public class MemberMapperTest {
     }
 
     @Test
+    public void toDtoWithoutInss_givenMemberWithInss_ThenMapAllFieldsButInssToMemberDto(){
+        Member member = Member.MemberBuilder.member()
+                .withId(UUID.randomUUID())
+                .withHumanInfo(HumanInfo.HumanInfoBuilder.humanInfo()
+                        .withEmail("rensquentin@hotmail.com")
+                        .withFirstName("Quentin")
+                        .withLastName("Rens")
+                        .build())
+                .withInss("54546")
+                .withStreetName("Saint-Feuillen")
+                .withStreetNumber("3")
+                .withCity("Charleroi")
+                .withPostalCode("6120")
+                .build();
+
+        MemberDto memberDto = memberMapper.toDtoWithoutInss(member);
+
+        assertThat(memberDto).isEqualToIgnoringGivenFields(member, "inss");
+        assertThat(memberDto.getInss()).isEqualTo(null);
+    }
+
+    @Test
     public void toDomain_givenMemberDto_thenMapAllFieldsToMember() {
         MemberDto memberDto = MemberDto.memberDto()
                 .withId(UUID.randomUUID())
@@ -60,4 +82,5 @@ public class MemberMapperTest {
         assertThat(member)
                 .isEqualToComparingFieldByField(memberDto);
     }
+
 }

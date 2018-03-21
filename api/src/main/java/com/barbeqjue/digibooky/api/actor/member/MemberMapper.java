@@ -18,6 +18,17 @@ public class MemberMapper {
                 .withPostalCode(member.getPostalCode());
     }
 
+    MemberDto toDtoWithoutInss(Member member) {
+        return MemberDto.memberDto()
+                .withId(member.getId())
+                .withoutInss()
+                .withHumanInfo(member.getHumanInfo())
+                .withStreetNumber(member.getStreetNumber())
+                .withStreetName(member.getStreetName())
+                .withCity(member.getCity())
+                .withPostalCode(member.getPostalCode());
+    }
+
     Member toDomain(MemberDto memberDto) {
         return Member.MemberBuilder.member()
                 .withId(memberDto.getId())
@@ -29,4 +40,6 @@ public class MemberMapper {
                 .withPostalCode(memberDto.getPostalCode())
                 .build();
     }
+
+
 }
