@@ -32,6 +32,15 @@ public class BookRepository {
         return books.get(id);
     }
 
+    public Book getBookByIsbn(String isbn) {
+        for (int id : books.keySet()) {
+            if (books.get(id).getIsbn().equals(isbn)) {
+                return books.get(id);
+            }
+        }
+        return null;
+    }
+
     public Book updateBook(int id, Book updatedbook) {
         books.put(id, updatedbook);
         return updatedbook;
@@ -42,7 +51,7 @@ public class BookRepository {
 //        books.remove(id);
     }
 
-    public List<Book> getBookByIsbn(String isbnRegex) {
+    public List<Book> getBooksByPartialIsbn(String isbnRegex) {
         List<Book> bookSearchResults = new ArrayList<>();
         for (int id : books.keySet()) {
             if (books.get(id).getIsbn().contains(isbnRegex)) {

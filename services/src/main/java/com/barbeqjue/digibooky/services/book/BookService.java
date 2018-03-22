@@ -32,6 +32,22 @@ public class BookService {
         return bookRepository.getBookById(id);
     }
 
+    public Book getBookByIsbn(String isbn) {
+        assertBookIsPresent(bookRepository.getBookByIsbn(isbn));
+        return bookRepository.getBookByIsbn(isbn);
+    }
+
+    public List<Book> getBooksByPartialIsbn(String isbn) {
+        assertBooksArePresent(bookRepository.getBooksByPartialIsbn(isbn));
+        return bookRepository.getBooksByPartialIsbn(isbn);
+    }
+
+    private void assertBooksArePresent(List<Book> queriedBooksById) {
+        if (queriedBooksById.size() == 0) {
+            throw new UnknownResourceException("ID", Book.class.getSimpleName());
+        }
+    }
+
     public Book createBook(Book book) {
         assertBookIdIsNotPresent(book, CREATE);
         return bookRepository.storeBook(book);

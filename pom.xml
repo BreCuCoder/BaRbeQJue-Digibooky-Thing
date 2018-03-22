@@ -60,6 +60,12 @@
 
             <dependency>
                 <groupId>com.barbeqjue.digibooky</groupId>
+                <artifactId>utilities</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.barbeqjue.digibooky</groupId>
                 <artifactId>api</artifactId>
                 <version>${project.version}</version>
             </dependency>
