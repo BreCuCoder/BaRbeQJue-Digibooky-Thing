@@ -1,16 +1,28 @@
 package com.barbeqjue.digibooky.api.actor.member;
 
-import com.barbeqjue.digibooky.api.actor.member.MemberDto;
 import com.barbeqjue.digibooky.domain.actor.member.Member;
 
 import javax.inject.Named;
+import java.util.UUID;
 
 @Named
 public class MemberMapper {
     MemberDto toDto(Member member) {
         return MemberDto.memberDto()
-                .withPerson(member.getPerson())
+                .withId(member.getId())
+                .withHumanInfo(member.getHumanInfo())
                 .withInss(member.getInss())
+                .withStreetNumber(member.getStreetNumber())
+                .withStreetName(member.getStreetName())
+                .withCity(member.getCity())
+                .withPostalCode(member.getPostalCode());
+    }
+
+    MemberDto toDtoWithoutInss(Member member) {
+        return MemberDto.memberDto()
+                .withId(member.getId())
+                .withoutInss()
+                .withHumanInfo(member.getHumanInfo())
                 .withStreetNumber(member.getStreetNumber())
                 .withStreetName(member.getStreetName())
                 .withCity(member.getCity())
@@ -19,7 +31,8 @@ public class MemberMapper {
 
     Member toDomain(MemberDto memberDto) {
         return Member.MemberBuilder.member()
-                .withPerson(memberDto.getPerson())
+                .withId(memberDto.getId())
+                .withHumanInfo((memberDto.getHumanInfo()))
                 .withInss(memberDto.getInss())
                 .withStreetNumber(memberDto.getStreetNumber())
                 .withStreetName(memberDto.getStreetName())
@@ -27,4 +40,6 @@ public class MemberMapper {
                 .withPostalCode(memberDto.getPostalCode())
                 .build();
     }
+
+
 }

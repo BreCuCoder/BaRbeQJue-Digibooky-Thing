@@ -1,11 +1,12 @@
 package com.barbeqjue.digibooky.api.actor.member;
 
-import com.barbeqjue.digibooky.api.actor.member.MemberDto;
-import com.barbeqjue.digibooky.api.actor.member.MemberMapper;
+import com.barbeqjue.digibooky.domain.actor.HumanInfo;
 import com.barbeqjue.digibooky.domain.actor.member.Member;
-import com.barbeqjue.digibooky.domain.actor.person.Person;
+import com.barbeqjue.digibooky.domain.actor.moderator.Moderator;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -20,8 +21,8 @@ public class MemberMapperTest {
     @Test
     public void toDto_givenMember_thenMapAllFieldsToMemberDto() {
         Member member = Member.MemberBuilder.member()
-                .withPerson(Person.PersonBuilder.person()
-                        .withId(1)
+                .withId(UUID.randomUUID())
+                .withHumanInfo(HumanInfo.HumanInfoBuilder.humanInfo()
                         .withEmail("rensquentin@hotmail.com")
                         .withFirstName("Quentin")
                         .withLastName("Rens")
@@ -40,10 +41,32 @@ public class MemberMapperTest {
     }
 
     @Test
+    public void toDtoWithoutInss_givenMemberWithInss_ThenMapAllFieldsButInssToMemberDto(){
+        Member member = Member.MemberBuilder.member()
+                .withId(UUID.randomUUID())
+                .withHumanInfo(HumanInfo.HumanInfoBuilder.humanInfo()
+                        .withEmail("rensquentin@hotmail.com")
+                        .withFirstName("Quentin")
+                        .withLastName("Rens")
+                        .build())
+                .withInss("54546")
+                .withStreetName("Saint-Feuillen")
+                .withStreetNumber("3")
+                .withCity("Charleroi")
+                .withPostalCode("6120")
+                .build();
+
+        MemberDto memberDto = memberMapper.toDtoWithoutInss(member);
+
+        assertThat(memberDto).isEqualToIgnoringGivenFields(member, "inss");
+        assertThat(memberDto.getInss()).isEqualTo(null);
+    }
+
+    @Test
     public void toDomain_givenMemberDto_thenMapAllFieldsToMember() {
         MemberDto memberDto = MemberDto.memberDto()
-                .withPerson(Person.PersonBuilder.person()
-                        .withId(1)
+                .withId(UUID.randomUUID())
+                .withHumanInfo(HumanInfo.HumanInfoBuilder.humanInfo()
                         .withEmail("rensquentin@hotmail.com")
                         .withFirstName("Quentin")
                         .withLastName("Rens")
@@ -59,4 +82,5 @@ public class MemberMapperTest {
         assertThat(member)
                 .isEqualToComparingFieldByField(memberDto);
     }
+
 }
