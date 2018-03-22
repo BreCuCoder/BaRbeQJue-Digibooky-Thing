@@ -1,4 +1,4 @@
-package com.barbeqjue.digibooky.services.exceptions;
+package com.barbeqjue.digibooky.utitlities.exceptions;
 
 public class EmptyFieldException extends DigiBookyException {
     public EmptyFieldException(String field) {

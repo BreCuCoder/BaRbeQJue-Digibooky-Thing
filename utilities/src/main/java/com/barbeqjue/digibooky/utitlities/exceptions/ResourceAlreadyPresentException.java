@@ -1,4 +1,4 @@
-package com.barbeqjue.digibooky.services.exceptions;
+package com.barbeqjue.digibooky.utitlities.exceptions;
 
 public class ResourceAlreadyPresentException extends DigiBookyException {
     public ResourceAlreadyPresentException(String field, String resource) {
