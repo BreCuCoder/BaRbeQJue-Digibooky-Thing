@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -26,9 +27,11 @@ public class BookController {
     }
 
 
+
+
     @GetMapping(produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public List<BookDto> getBook(@RequestParam Map<String, String> queryParameters) {
+    public List<BookDto> getBook(@RequestParam(required = false) Map<String, String> queryParameters) {
         return bookService.getAllBooks(queryParameters).stream()
                 .map(bookMapper::toDto)
                 .collect(Collectors.toList());

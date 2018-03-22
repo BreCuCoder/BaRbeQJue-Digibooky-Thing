@@ -26,6 +26,26 @@ public class BookSearchService {
                     searchResult.add(book);
                 }
             }
+            if(searchParametersMap.containsKey("title")) {
+                if(BookSearchService.match(book.getTitle(),searchParametersMap.get("title"))) {
+                    searchResult.add(book);
+                }
+            }
+            if(searchParametersMap.containsKey("authorfirstname")) {
+                if(BookSearchService.match(book.getAuthor().getFirstName(),searchParametersMap.get("authorfirstname"))) {
+                    searchResult.add(book);
+                }
+            }
+            if(searchParametersMap.containsKey("authorlastname")) {
+                if(BookSearchService.match(book.getAuthor().getLastName(),searchParametersMap.get("authorlastname"))) {
+                    searchResult.add(book);
+                }
+            }
+            if(searchParametersMap.containsKey("authorname")) {
+                if(BookSearchService.match(book.getAuthor().getFirstName() + book.getAuthor().getLastName(),searchParametersMap.get("authorname"))) {
+                    searchResult.add(book);
+                }
+            }
         }
         return searchResult;
     }

@@ -31,8 +31,11 @@ public class BookService {
     }
 
     public List<Book> getAllBooks(Map<String, String> queryParameters) {
-        if(queryParameters == null) { return getAllBooks(); }
-        return bookSearchService.searchForBooks(bookRepository.getAllBooks(), queryParameters);
+        if (queryParameters.isEmpty()) {
+            return getAllBooks();
+        }
+        return bookSearchService.searchForBooks(getAllBooks(),queryParameters);
+
     }
 
     public Book getBookById(Integer id) {
@@ -65,6 +68,7 @@ public class BookService {
         assertBookIdIsNotPresent(updatedBook, UPDATE);
         assertBookIsPresent(bookRepository.getBookById(id));
         updatedBook.setId(id);
+        bookRepository.updateBook(id, updatedBook);
         return updatedBook;
     }
 
