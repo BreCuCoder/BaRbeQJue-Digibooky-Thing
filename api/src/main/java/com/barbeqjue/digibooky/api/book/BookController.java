@@ -26,15 +26,21 @@ public class BookController {
     }
 
 
-    @GetMapping(path = "/blah", produces = APPLICATION_JSON_VALUE)
+//    @GetMapping(path = "/blah", produces = APPLICATION_JSON_VALUE)
+//    @ResponseStatus(HttpStatus.OK)
+//    public List<BookDto> getBookTest(@RequestParam Map<String, String> queryParameters) {
+//        return bookService.getAllBooks(queryParameters).stream()
+//                .map(bookMapper::toDto)
+//                .collect(Collectors.toList());
+//    }
+
+    @GetMapping(produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public List<BookDto> getBookTest(@RequestParam Map<String, String> queryParameters) {
-        return bookService.getAllBooks(queryParameters).stream()
+    public List<BookDto> getBook() {
+        return bookService.getAllBooks().stream()
                 .map(bookMapper::toDto)
                 .collect(Collectors.toList());
     }
-
-
 
 
     @GetMapping(path = "/{id}", produces = APPLICATION_JSON_VALUE)
