@@ -20,6 +20,7 @@ import java.time.LocalDate;
 
 import static com.barbeqjue.digibooky.domain.book.BookTestBuilder.aBook;
 import static org.junit.Assert.*;
+
 @RunWith(MockitoJUnitRunner.class)
 public class LendingServiceTest {
 
@@ -33,21 +34,28 @@ public class LendingServiceTest {
     @Mock
     MemberService memberServiceMock;
 
-//    @Test
-//    public void lendingABook() {
-//      int givenId = 15;
-//        String givenIsbn = "testIsbn";
-//        Book expectedBook = aBook().build();
-//
-////        Mockito.when(bookServiceMock.getBookByIsbn(givenIsbn)).thenReturn(expectedBook);
-////        Mockito.when(memberServiceMock.getMember(givenId)).thenReturn(Mockito.any(Member.class));
-////
-////        Lending actualBook = lendingService.lendABook(givenId,givenIsbn);
-////
-////        Mockito.verify(lendingRepositoryMock).storeLending(Mockito.any(Lending.class));
-////        Assertions.assertThat(actualBook).isEqualTo(expectedLending);
+    @Test
+    public void lendingABook() {
+        int givenId = 15;
+        String givenIsbn = "testIsbn";
+        Book expectedBook = aBook().build();
+        Member expectedMember = Member.MemberBuilder.member().build();
 
-//    }
+        Mockito.when(bookServiceMock.getBookByIsbn(givenIsbn)).thenReturn(expectedBook);
+        Mockito.when(memberServiceMock.getMember(givenId)).thenReturn(expectedMember);
+
+        Lending expectedLending = Lending.LendingBuilder.lending()
+                .withMember(expectedMember)
+                .withBook(expectedBook)
+                .withDueDate(LocalDate.now().plusWeeks(3))
+                .build();
+        Mockito.when(lendingRepositoryMock.storeLending(Mockito.any())).thenReturn(expectedLending);
+
+        Lending actualLending = lendingService.lendABook(givenId, givenIsbn);
+
+        Assertions.assertThat(actualLending.getBook()).isEqualTo(expectedLending.getBook());
+
+    }
 
     @Test
     public void returnBook_HappyPath() {
@@ -59,5 +67,4 @@ public class LendingServiceTest {
 
         Mockito.verify(lendingRepositoryMock).deleteLending(testUuid);
     }
-
 }

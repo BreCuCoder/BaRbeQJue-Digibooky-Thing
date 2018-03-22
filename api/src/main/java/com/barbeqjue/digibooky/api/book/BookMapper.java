@@ -9,7 +9,7 @@ import static com.barbeqjue.digibooky.domain.book.Book.BookBuilder.book;
 @Named
 public class BookMapper {
 
-    BookDto toDto(Book book) {
+    public BookDto toDto(Book book) {
         return BookDto.bookDto()
                 .withId(book.getId())
                 .withIsbn(book.getIsbn())
@@ -19,7 +19,7 @@ public class BookMapper {
 
     }
 
-    Book toDomain(BookDto bookDto) {
+    public Book toDomain(BookDto bookDto) {
         return book()
                 .withId(bookDto.getId())
                 .withIsbn(bookDto.getIsbn())

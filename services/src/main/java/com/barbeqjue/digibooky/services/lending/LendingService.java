@@ -45,11 +45,19 @@ public class LendingService {
 
     }
 
-    public List<Book> getLendingsByMember (Member member){
+    public List<Book> getLentBooksByMember (Member member){
         Map<Member, List<Lending>> membersByLending = lendingRepository.getLendings().values().stream()
                 .collect(Collectors.groupingBy(lending -> lending.getMember()));
 
         return membersByLending.get(member).stream().map(lending -> lending.getBook()).collect(Collectors.toList());
+
+    }
+
+    public List<Book> getAllOverdueBooks (){
+        return lendingRepository.getLendings().values().stream()
+                .filter(lending -> lending.getDueDate().isBefore(LocalDate.now()))
+                .map(lending -> lending.getBook())
+                .collect(Collectors.toList());
 
     }
 
