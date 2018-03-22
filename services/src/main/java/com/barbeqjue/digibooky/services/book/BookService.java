@@ -2,16 +2,16 @@ package com.barbeqjue.digibooky.services.book;
 
 import com.barbeqjue.digibooky.domain.book.Book;
 import com.barbeqjue.digibooky.domain.book.BookRepository;
-import com.barbeqjue.digibooky.services.exceptions.IllegalFieldFoundException;
-import com.barbeqjue.digibooky.services.exceptions.IllegalFieldFoundException.CrudAction;
-import com.barbeqjue.digibooky.services.exceptions.UnknownResourceException;
+import com.barbeqjue.digibooky.utitlities.exceptions.IllegalFieldFoundException;
+import com.barbeqjue.digibooky.utitlities.exceptions.IllegalFieldFoundException.CrudAction;
+import com.barbeqjue.digibooky.utitlities.exceptions.UnknownResourceException;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
 
-import static com.barbeqjue.digibooky.services.exceptions.IllegalFieldFoundException.CrudAction.CREATE;
-import static com.barbeqjue.digibooky.services.exceptions.IllegalFieldFoundException.CrudAction.UPDATE;
+import static com.barbeqjue.digibooky.utitlities.exceptions.IllegalFieldFoundException;
+import static com.barbeqjue.digibooky.utitlities.exceptions.IllegalFieldFoundException;
 
 @Named
 public class BookService {

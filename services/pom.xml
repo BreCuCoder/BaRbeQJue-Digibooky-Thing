@@ -12,9 +12,13 @@
     <artifactId>services</artifactId>
     <dependencies>
         <dependency>
-        <groupId>com.barbeqjue.digibooky</groupId>
-        <artifactId>domain</artifactId>
-    </dependency>
+            <groupId>com.barbeqjue.digibooky</groupId>
+            <artifactId>domain</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.barbeqjue.digibooky</groupId>
+            <artifactId>utilities</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
