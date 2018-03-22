@@ -29,6 +29,11 @@ public class LendingService {
     }
 
     public Lending lendABook(Integer userId, String isbn) {
+
+        bookService.getBookByIsbn(isbn).setMemberName(memberService.getMember(userId).getHumanInfo().getFirstName().charAt(0) + ". " + memberService.getMember(userId).getHumanInfo().getLastName());
+        bookService.getBookByIsbn(isbn).setLended(true);
+
+
         return lendingRepository.storeLending(Lending.LendingBuilder.lending()
                 .withDueDate(LocalDate.now().plusWeeks(3))
                 .withMember(memberService.getMember(userId))
@@ -38,6 +43,8 @@ public class LendingService {
 
     public void returnBook(Integer uuid) {
         assertLendingIsPresent(lendingRepository.getLending(uuid));
+        lendingRepository.getLending(uuid).getBook().setMemberName(null);
+        lendingRepository.getLending(uuid).getBook().setLended(false);
         if (lendingRepository.getLending(uuid).getDueDate().isBefore(LocalDate.now())) {
             System.out.println("You should have returned it earlier, damn you");
         }
@@ -45,7 +52,7 @@ public class LendingService {
 
     }
 
-    public List<Book> getLentBooksByMember (Member member){
+    public List<Book> getLentBooksByMember(Member member) {
         Map<Member, List<Lending>> membersByLending = lendingRepository.getLendings().values().stream()
                 .collect(Collectors.groupingBy(lending -> lending.getMember()));
 
@@ -53,7 +60,7 @@ public class LendingService {
 
     }
 
-    public List<Book> getAllOverdueBooks (){
+    public List<Book> getAllOverdueBooks() {
         return lendingRepository.getLendings().values().stream()
                 .filter(lending -> lending.getDueDate().isBefore(LocalDate.now()))
                 .map(lending -> lending.getBook())

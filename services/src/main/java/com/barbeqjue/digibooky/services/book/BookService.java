@@ -48,10 +48,6 @@ public class BookService {
         return bookRepository.getBookByIsbn(isbn);
     }
 
-    public List<Book> getBooksByPartialIsbn(String isbn) {
-        assertBooksArePresent(bookRepository.getBooksByPartialIsbn(isbn));
-        return bookRepository.getBooksByPartialIsbn(isbn);
-    }
 
     private void assertBooksArePresent(List<Book> queriedBooksById) {
         if (queriedBooksById.size() == 0) {

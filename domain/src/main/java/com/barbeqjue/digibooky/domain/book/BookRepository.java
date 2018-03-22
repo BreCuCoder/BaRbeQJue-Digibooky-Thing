@@ -51,43 +51,11 @@ public class BookRepository {
 //        books.remove(id);
     }
 
-    public List<Book> getBooksByPartialIsbn(String isbnRegex) {
-        List<Book> bookSearchResults = new ArrayList<>();
-        for (int id : books.keySet()) {
-            if (books.get(id).getIsbn().contains(isbnRegex)) {
-                bookSearchResults.add(books.get(id));
-            }
-        }
-        return Collections.unmodifiableList(bookSearchResults);
-    }
 
-    public List<Book> getBookByTitle(String titleRegex) {
-        List<Book> bookSearchResults = new ArrayList<>();
-        for (int id : books.keySet()) {
-            if (books.get(id).getTitle().contains(titleRegex)) {
-                bookSearchResults.add(books.get(id));
-            }
-        }
-        return Collections.unmodifiableList(bookSearchResults);
-    }
 
-    public List<Book> getBookByAuthor(String authorFirstNameRegex, String authorLastNameRegex) {
-        List<Book> bookSearchResults = new ArrayList<>();
-        for (int id : books.keySet()) {
-            if (books.get(id).getAuthor().getLastName().contains(authorLastNameRegex)) {
-                bookSearchResults.add(books.get(id));
-            }
-        }
-        return Collections.unmodifiableList(bookSearchResults);
-    }
 
-    public List<Book> getBookByAuthor(String authorLastNameRegex) {
-        List<Book> bookSearchResults = new ArrayList<>();
-        for (int id : books.keySet()) {
-            if (books.get(id).getAuthor().getLastName().contains(authorLastNameRegex)) {
-                bookSearchResults.add(books.get(id));
-            }
-        }
-        return Collections.unmodifiableList(bookSearchResults);
-    }
+
+
+
+
 }

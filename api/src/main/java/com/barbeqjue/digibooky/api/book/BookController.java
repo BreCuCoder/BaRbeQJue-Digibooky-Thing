@@ -5,10 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -27,8 +25,6 @@ public class BookController {
     }
 
 
-
-
     @GetMapping(produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public List<BookDto> getBook(@RequestParam(required = false) Map<String, String> queryParameters) {
@@ -43,6 +39,14 @@ public class BookController {
     public BookDto getBook(@PathVariable("id") Integer id) {
         return bookMapper
                 .toDto(bookService.getBookById(id));
+    }
+
+
+    @GetMapping(path = "/enhancedBook/{id}", produces = APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public BookDto getBookWithDetails(@PathVariable("id") Integer id) {
+        return bookMapper
+                .toDtoWithDetails(bookService.getBookById(id));
     }
 
 
