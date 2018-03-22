@@ -10,6 +10,8 @@ public class Book {
     private String title;
     private Author author;
     private BookStatus bookStatus;
+    private boolean isLended;
+    private String memberName;
 
     private Book() {
     }
@@ -61,12 +63,30 @@ public class Book {
         this.bookStatus = bookStatus;
     }
 
+    public void setLended(boolean lended) {
+        isLended = lended;
+    }
+
+    public void setMemberName(String memberName) {
+        this.memberName = memberName;
+    }
+
+    public boolean isLended() {
+        return isLended;
+    }
+
+    public String getMemberName() {
+        return memberName;
+    }
+
     public static class BookBuilder {
         private Integer id;
         private String isbn;
         private String title;
         private Author author;
         private BookStatus bookStatus;
+        private boolean isLended;
+        private String memberName;
 
         private BookBuilder(){}
 
@@ -81,7 +101,20 @@ public class Book {
             book.setTitle(title);
             book.setAuthor(author);
             book.setBookStatus(BookStatus.ACTIVE);
+            book.setLended(isLended);
+            book.setMemberName(memberName);
             return book;
+        }
+
+
+        public BookBuilder withIsLended(boolean isLended){
+            this.isLended = isLended;
+            return this;
+        }
+
+        public BookBuilder withMemberName(String memberName){
+            this.memberName = memberName;
+            return this;
         }
 
         public BookBuilder withId(Integer id) {

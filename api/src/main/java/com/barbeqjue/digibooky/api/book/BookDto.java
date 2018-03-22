@@ -10,10 +10,29 @@ public class BookDto {
     private String title;
     private Author author;
     private BookStatus bookStatus;
+    private boolean isLended;
+    private String memberName;
 
+    public boolean isLended() {
+        return isLended;
+    }
+
+    public String getMemberName() {
+        return memberName;
+    }
 
     public static BookDto bookDto() {
         return new BookDto();
+    }
+
+    public BookDto withIsLended(boolean isLended){
+        this.isLended = isLended;
+        return this;
+    }
+
+    public BookDto withMemberName(String memberName){
+        this.memberName = memberName;
+        return this;
     }
 
     public BookDto withId(Integer id) {

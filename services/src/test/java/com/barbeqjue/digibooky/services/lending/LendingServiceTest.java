@@ -1,6 +1,7 @@
 package com.barbeqjue.digibooky.services.lending;
 
 import com.barbeqjue.digibooky.domain.Author;
+import com.barbeqjue.digibooky.domain.actor.HumanInfo;
 import com.barbeqjue.digibooky.domain.actor.member.Member;
 import com.barbeqjue.digibooky.domain.book.Book;
 import com.barbeqjue.digibooky.domain.book.BookTestBuilder;
@@ -45,7 +46,12 @@ public class LendingServiceTest {
         int givenId = 15;
         String givenIsbn = "testIsbn";
         Book expectedBook = aBook().build();
-        Member expectedMember = Member.MemberBuilder.member().build();
+        Member expectedMember = Member.MemberBuilder.member()
+                .withHumanInfo(HumanInfo.HumanInfoBuilder.humanInfo()
+                        .withFirstName("Hi")
+                        .withLastName("Bye")
+                        .build())
+                .build();
 
         Mockito.when(bookServiceMock.getBookByIsbn(givenIsbn)).thenReturn(expectedBook);
         Mockito.when(memberServiceMock.getMember(givenId)).thenReturn(expectedMember);
@@ -66,8 +72,14 @@ public class LendingServiceTest {
     @Test
     public void returnBook_HappyPath() {
         int testUuid = 45;
+        Book randomBook = Book.BookBuilder.book().withIsLended(true).withMemberName("Georgi").build();
 
-        Mockito.when(lendingRepositoryMock.getLending(testUuid)).thenReturn(Lending.LendingBuilder.lending().withUuid(testUuid).withDueDate(LocalDate.now().minusDays(2)).build());
+        Mockito.when(lendingRepositoryMock.getLending(testUuid))
+                .thenReturn(Lending.LendingBuilder.lending()
+                        .withUuid(testUuid)
+                        .withDueDate(LocalDate.now().minusDays(2))
+                        .withBook(randomBook)
+                        .build());
 
         lendingService.returnBook(testUuid);
 

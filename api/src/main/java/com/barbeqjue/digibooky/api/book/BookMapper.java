@@ -19,6 +19,17 @@ public class BookMapper {
 
     }
 
+    public BookDto toDtoWithDetails (Book book){
+        return BookDto.bookDto()
+                .withId(book.getId())
+                .withIsbn(book.getIsbn())
+                .withTitle(book.getTitle())
+                .withAuthor(book.getAuthor())
+                .withBookStatus(book.getBookStatus())
+                .withIsLended(book.isLended())
+                .withMemberName(book.getMemberName());
+    }
+
     public Book toDomain(BookDto bookDto) {
         return book()
                 .withId(bookDto.getId())

@@ -35,14 +35,13 @@ public class LendingController {
         return lendingMapper.toDto(lendingService.lendABook(userId, isbn));
     }
 
-    @PostMapping(consumes = APPLICATION_JSON_VALUE)
-    @ResponseStatus(HttpStatus.OK)
+    @DeleteMapping(consumes = APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void returnBook(@RequestBody Integer userId) {
         lendingService.returnBook(userId);
     }
 
     @GetMapping(path = "/booksByMember", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-
     @ResponseStatus(HttpStatus.OK)
     public List<BookDto> lentBooksByMember(@RequestBody Member member) {
         return lendingService.getLentBooksByMember(member).stream().map(book -> bookMapper.toDto(book)).collect(Collectors.toList());

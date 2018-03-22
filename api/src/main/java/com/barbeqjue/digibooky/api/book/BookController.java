@@ -50,9 +50,17 @@ public class BookController {
                 .toDto(bookService.getBookById(id));
     }
 
+
+    @GetMapping(path = "/enhancedBook/{id}", produces = APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public BookDto getBookWithDetails(@PathVariable("id") Integer id) {
+        return bookMapper
+                .toDtoWithDetails(bookService.getBookById(id));
+    }
+
     @GetMapping(path = "/books/{isbn}", produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public BookDto getBook(@PathVariable("books") String isbn) {
+    public BookDto getBook(@PathVariable("isbn") String isbn) {
         return bookMapper
                 .toDto(bookService.getBookByIsbn(isbn));
     }
