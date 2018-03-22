@@ -31,7 +31,8 @@ public class BookService {
     }
 
     public List<Book> getAllBooks(Map<String, String> queryParameters) {
-        return bookRepository.getAllBooks();
+        if(queryParameters == null) { return getAllBooks(); }
+        return bookSearchService.searchForBooks(bookRepository.getAllBooks(), queryParameters);
     }
 
     public Book getBookById(Integer id) {

@@ -26,18 +26,10 @@ public class BookController {
     }
 
 
-//    @GetMapping(path = "/blah", produces = APPLICATION_JSON_VALUE)
-//    @ResponseStatus(HttpStatus.OK)
-//    public List<BookDto> getBookTest(@RequestParam Map<String, String> queryParameters) {
-//        return bookService.getAllBooks(queryParameters).stream()
-//                .map(bookMapper::toDto)
-//                .collect(Collectors.toList());
-//    }
-
     @GetMapping(produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public List<BookDto> getBook() {
-        return bookService.getAllBooks().stream()
+    public List<BookDto> getBook(@RequestParam Map<String, String> queryParameters) {
+        return bookService.getAllBooks(queryParameters).stream()
                 .map(bookMapper::toDto)
                 .collect(Collectors.toList());
     }
@@ -50,12 +42,6 @@ public class BookController {
                 .toDto(bookService.getBookById(id));
     }
 
-    @GetMapping(path = "/books/{isbn}", produces = APPLICATION_JSON_VALUE)
-    @ResponseStatus(HttpStatus.OK)
-    public BookDto getBook(@PathVariable("books") String isbn) {
-        return bookMapper
-                .toDto(bookService.getBookByIsbn(isbn));
-    }
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
