@@ -20,7 +20,6 @@ public class LendingService {
     private LendingRepository lendingRepository;
     private MemberService memberService;
     private BookService bookService;
-    private static Integer indexLending = 0;
 
     @Inject
     public LendingService(LendingRepository lendingRepository, BookService bookService, MemberService memberService) {
@@ -30,11 +29,11 @@ public class LendingService {
     }
 
     public Lending lendABook(Integer userId, String isbn) {
-        return lendingRepository.storeLending(
-                new Lending(indexLending,
-                        LocalDate.now().plusWeeks(3),
-                        memberService.getMember(userId),
-                        bookService.getBookByIsbn(isbn)));
+        return lendingRepository.storeLending(Lending.LendingBuilder.lending()
+                .withDueDate(LocalDate.now().plusWeeks(3))
+                .withMember(memberService.getMember(userId))
+                .withBook(bookService.getBookByIsbn(isbn))
+                .build());
     }
 
     public void returnBook(Integer uuid) {
