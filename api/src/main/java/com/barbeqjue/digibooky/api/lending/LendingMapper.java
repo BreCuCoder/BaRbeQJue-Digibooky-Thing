@@ -2,6 +2,9 @@ package com.barbeqjue.digibooky.api.lending;
 
 import com.barbeqjue.digibooky.domain.lending.Lending;
 
+import javax.inject.Named;
+
+@Named
 public class LendingMapper {
 
     LendingDto toDto (Lending lending){
