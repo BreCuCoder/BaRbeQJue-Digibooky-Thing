@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * able to access the resources (REST endpoints) exposed by this back-end application.
  * If we don't enable this, our GUI (running on a different port and thus origin) will not
  * be able to access the REST endpoint.
- *
+ * <p>
  * Will be component scanned!
  * Press F4 on this annotation. You'll see it's annotated as @Component (@Named)
  */
@@ -19,6 +19,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class CrossOriginResourceSharingConfig {
 
     private static final String ALLOWED_ORIGINS = "*";
+    private static final String ALLOWED_METHODS = "*";
     private static final String ALLOWED_PATH_MAPPINGS = "/**";
 
     @Bean
@@ -27,7 +28,8 @@ public class CrossOriginResourceSharingConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping(ALLOWED_PATH_MAPPINGS)
-                        .allowedOrigins(ALLOWED_ORIGINS);
+                        .allowedOrigins(ALLOWED_ORIGINS)
+                        .allowedMethods(ALLOWED_METHODS);
             }
         };
     }

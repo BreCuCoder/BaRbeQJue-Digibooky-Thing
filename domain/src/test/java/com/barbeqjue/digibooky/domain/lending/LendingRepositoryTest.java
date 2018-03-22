@@ -15,7 +15,21 @@ public class LendingRepositoryTest {
 
         Assertions.assertThat(actualResult).isEqualTo(lendingMock);
 
+    }
 
+
+    @Test
+    public void deleteLending_happyPath() {
+        //GIVEN
+        LendingRepository lendingRepository =new LendingRepository();
+        Lending lendingMock = Mockito.mock(Lending.class);
+        lendingMock.setUuid(45);
+
+        lendingRepository.storeLending(lendingMock);
+        lendingRepository.deleteLending(lendingMock.getuuid());
+
+
+        Assertions.assertThat(lendingRepository.getLendings()).isEmpty();
 
     }
 }
