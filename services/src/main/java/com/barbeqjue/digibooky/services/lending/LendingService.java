@@ -6,7 +6,7 @@ import com.barbeqjue.digibooky.domain.lending.Lending;
 import com.barbeqjue.digibooky.domain.lending.LendingRepository;
 import com.barbeqjue.digibooky.services.book.BookService;
 import com.barbeqjue.digibooky.services.actor.member.MemberService;
-import com.barbeqjue.digibooky.services.exceptions.UnknownResourceException;
+import com.barbeqjue.digibooky.utitlities.exceptions.UnknownResourceException;
 
 import javax.inject.Inject;
 import javax.inject.Named;
