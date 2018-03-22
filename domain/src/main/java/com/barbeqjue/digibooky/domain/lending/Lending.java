@@ -1,7 +1,7 @@
 package com.barbeqjue.digibooky.domain.lending;
 
 import com.barbeqjue.digibooky.domain.book.Book;
-import com.barbeqjue.digibooky.domain.member.Member;
+import com.barbeqjue.digibooky.domain.actor.member.Member;
 
 import java.time.LocalDate;
 
