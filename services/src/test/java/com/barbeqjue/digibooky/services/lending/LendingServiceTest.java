@@ -41,10 +41,22 @@ public class LendingServiceTest {
         Mockito.when(bookServiceMock.getBookByIsbn(givenIsbn)).thenReturn(expectedBook);
         Mockito.when(memberServiceMock.getMember(givenId)).thenReturn(Mockito.any(Member.class));
 
-        Book actualBook = lendingService.lendABook(givenId,givenIsbn);
+        Lending actualBook = lendingService.lendABook(givenId,givenIsbn);
 
         Mockito.verify(lendingRepositoryMock).storeLending(Mockito.any(Lending.class));
         Assertions.assertThat(actualBook).isEqualTo(expectedBook);
 
     }
+
+    @Test
+    public void returnBook_HappyPath() {
+        int testUuid = 45;
+
+        Mockito.when(lendingRepositoryMock.getLending(testUuid)).thenReturn(Lending.LendingBuilder.lending().withUuid(testUuid).withDueDate(LocalDate.now().minusDays(2)).build());
+
+        lendingService.returnBook(testUuid);
+
+        Mockito.verify(lendingRepositoryMock).deleteLending(testUuid);
+    }
+
 }
