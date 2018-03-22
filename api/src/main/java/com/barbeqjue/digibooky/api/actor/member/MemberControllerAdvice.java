@@ -1,9 +1,9 @@
 package com.barbeqjue.digibooky.api.actor.member;
 
-import com.barbeqjue.digibooky.services.exceptions.EmptyFieldException;
-import com.barbeqjue.digibooky.services.exceptions.IllegalFieldFormatException;
-import com.barbeqjue.digibooky.services.exceptions.ResourceAlreadyPresentException;
-import com.barbeqjue.digibooky.services.exceptions.UnknownResourceException;
+import com.barbeqjue.digibooky.utitlities.exceptions.EmptyFieldException;
+import com.barbeqjue.digibooky.utitlities.exceptions.IllegalFieldFormatException;
+import com.barbeqjue.digibooky.utitlities.exceptions.ResourceAlreadyPresentException;
+import com.barbeqjue.digibooky.utitlities.exceptions.UnknownResourceException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

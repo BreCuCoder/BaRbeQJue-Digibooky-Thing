@@ -2,10 +2,10 @@ package com.barbeqjue.digibooky.services.actor.member;
 
 import com.barbeqjue.digibooky.domain.actor.member.Member;
 import com.barbeqjue.digibooky.domain.actor.member.MemberRepository;
-import com.barbeqjue.digibooky.services.exceptions.EmptyFieldException;
-import com.barbeqjue.digibooky.services.exceptions.IllegalFieldFormatException;
-import com.barbeqjue.digibooky.services.exceptions.ResourceAlreadyPresentException;
-import com.barbeqjue.digibooky.services.exceptions.UnknownResourceException;
+import com.barbeqjue.digibooky.utitlities.exceptions.EmptyFieldException;
+import com.barbeqjue.digibooky.utitlities.exceptions.IllegalFieldFormatException;
+import com.barbeqjue.digibooky.utitlities.exceptions.ResourceAlreadyPresentException;
+import com.barbeqjue.digibooky.utitlities.exceptions.UnknownResourceException;
 
 import javax.inject.Inject;
 import javax.inject.Named;

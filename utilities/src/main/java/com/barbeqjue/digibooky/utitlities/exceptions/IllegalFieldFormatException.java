@@ -1,4 +1,4 @@
-package com.barbeqjue.digibooky.services.exceptions;
+package com.barbeqjue.digibooky.utitlities.exceptions;
 
 public class IllegalFieldFormatException extends DigiBookyException {
     public IllegalFieldFormatException(String field) {
