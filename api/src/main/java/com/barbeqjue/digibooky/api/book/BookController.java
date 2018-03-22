@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -13,7 +15,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RestController
 @RequestMapping(path = "/books")
 public class BookController {
- 
+
     private BookService bookService;
     private BookMapper bookMapper;
 
@@ -23,6 +25,15 @@ public class BookController {
         this.bookMapper = bookMapper;
     }
 
+
+//    @GetMapping(path = "/blah", produces = APPLICATION_JSON_VALUE)
+//    @ResponseStatus(HttpStatus.OK)
+//    public List<BookDto> getBookTest(@RequestParam Map<String, String> queryParameters) {
+//        return bookService.getAllBooks(queryParameters).stream()
+//                .map(bookMapper::toDto)
+//                .collect(Collectors.toList());
+//    }
+
     @GetMapping(produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public List<BookDto> getBook() {
@@ -31,11 +42,19 @@ public class BookController {
                 .collect(Collectors.toList());
     }
 
+
     @GetMapping(path = "/{id}", produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public BookDto getBook(@PathVariable("id") Integer id) {
         return bookMapper
                 .toDto(bookService.getBookById(id));
+    }
+
+    @GetMapping(path = "/books/{isbn}", produces = APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public BookDto getBook(@PathVariable("books") String isbn) {
+        return bookMapper
+                .toDto(bookService.getBookByIsbn(isbn));
     }
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
