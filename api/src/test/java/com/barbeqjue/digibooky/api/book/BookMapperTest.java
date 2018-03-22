@@ -2,6 +2,7 @@ package com.barbeqjue.digibooky.api.book;
 
 import com.barbeqjue.digibooky.domain.Author;
 import com.barbeqjue.digibooky.domain.book.Book;
+import com.barbeqjue.digibooky.domain.book.BookStatus;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -39,7 +40,8 @@ public class BookMapperTest {
                 .withId(2)
                 .withIsbn("123-456789-10")
                 .withTitle("Spring for Dummies")
-                .withAuthor(new Author("Jane", "Doe"));
+                .withAuthor(new Author("Jane", "Doe"))
+                .withBookStatus(BookStatus.ACTIVE);
 
         Book book = bookMapper.toDomain(bookDto);
 

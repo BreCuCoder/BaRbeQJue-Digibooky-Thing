@@ -1,11 +1,10 @@
-package com.barbeqjue.digibooky.api.member;
+package com.barbeqjue.digibooky.api.actor.member;
+
+import com.barbeqjue.digibooky.domain.actor.person.Person;
 
 public class MemberDto {
-    private Integer id;
+    private Person person;
     private String inss;
-    private String firstName;
-    private String lastName;
-    private String email;
     private String streetName;
     private String streetNumber;
     private String postalCode;
@@ -17,28 +16,13 @@ public class MemberDto {
         return new MemberDto();
     }
 
-    public MemberDto withId(Integer id) {
-        this.id = id;
+    public MemberDto withPerson (Person person){
+        this.person = person;
         return this;
     }
 
     public MemberDto withInss(String inss) {
         this.inss = inss;
-        return this;
-    }
-
-    public MemberDto withFirstName(String firstName) {
-        this.firstName = firstName;
-        return this;
-    }
-
-    public MemberDto withLastName(String lastName) {
-        this.lastName = lastName;
-        return this;
-    }
-
-    public MemberDto withEmail(String email) {
-        this.email = email;
         return this;
     }
 
@@ -62,24 +46,10 @@ public class MemberDto {
         return this;
     }
 
-    public Integer getId() {
-        return id;
-    }
+    public Person getPerson() {return person;}
 
     public String getInss() {
         return inss;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getEmail() {
-        return email;
     }
 
     public String getStreetName() {

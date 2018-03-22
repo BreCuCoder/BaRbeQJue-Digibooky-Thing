@@ -1,6 +1,9 @@
-package com.barbeqjue.digibooky.api.member;
+package com.barbeqjue.digibooky.api.actor.member;
 
-import com.barbeqjue.digibooky.domain.member.Member;
+import com.barbeqjue.digibooky.api.actor.member.MemberDto;
+import com.barbeqjue.digibooky.api.actor.member.MemberMapper;
+import com.barbeqjue.digibooky.domain.actor.member.Member;
+import com.barbeqjue.digibooky.domain.actor.person.Person;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,11 +20,13 @@ public class MemberMapperTest {
     @Test
     public void toDto_givenMember_thenMapAllFieldsToMemberDto() {
         Member member = Member.MemberBuilder.member()
-                .withId(1)
+                .withPerson(Person.PersonBuilder.person()
+                        .withId(1)
+                        .withEmail("rensquentin@hotmail.com")
+                        .withFirstName("Quentin")
+                        .withLastName("Rens")
+                        .build())
                 .withInss("54546")
-                .withEmail("rensquentin@hotmail.com")
-                .withFirstName("Quentin")
-                .withLastName("Rens")
                 .withStreetName("Saint-Feuillen")
                 .withStreetNumber("3")
                 .withCity("Charleroi")
@@ -37,11 +42,13 @@ public class MemberMapperTest {
     @Test
     public void toDomain_givenMemberDto_thenMapAllFieldsToMember() {
         MemberDto memberDto = MemberDto.memberDto()
-                .withId(1)
+                .withPerson(Person.PersonBuilder.person()
+                        .withId(1)
+                        .withEmail("rensquentin@hotmail.com")
+                        .withFirstName("Quentin")
+                        .withLastName("Rens")
+                        .build())
                 .withInss("54546")
-                .withEmail("rensquentin@hotmail.com")
-                .withFirstName("Quentin")
-                .withLastName("Rens")
                 .withStreetName("Saint-Feuillen")
                 .withStreetNumber("3")
                 .withCity("Charleroi")

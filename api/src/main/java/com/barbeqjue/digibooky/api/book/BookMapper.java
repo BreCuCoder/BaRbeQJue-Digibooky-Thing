@@ -14,7 +14,9 @@ public class BookMapper {
                 .withId(book.getId())
                 .withIsbn(book.getIsbn())
                 .withTitle(book.getTitle())
-                .withAuthor(book.getAuthor());
+                .withAuthor(book.getAuthor())
+                .withBookStatus(book.getBookStatus());
+
     }
 
     Book toDomain(BookDto bookDto) {
@@ -23,6 +25,7 @@ public class BookMapper {
                 .withIsbn(bookDto.getIsbn())
                 .withTitle(bookDto.getTitle())
                 .withAuthor(bookDto.getAuthor())
+                .withBookStatus(bookDto.getBookStatus())
                 .build();
     }
 

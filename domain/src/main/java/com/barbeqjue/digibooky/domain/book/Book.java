@@ -1,6 +1,7 @@
 package com.barbeqjue.digibooky.domain.book;
 
 import com.barbeqjue.digibooky.domain.Author;
+import com.barbeqjue.digibooky.domain.book.BookStatus;
 
 public class Book {
 
@@ -8,6 +9,7 @@ public class Book {
     private String isbn;
     private String title;
     private Author author;
+    private BookStatus bookStatus;
 
     private Book() {
     }
@@ -16,6 +18,7 @@ public class Book {
         this.isbn = isbn;
         this.title = title;
         this.author = author;
+        this.bookStatus = BookStatus.ACTIVE;
     }
 
     public Integer getId() {
@@ -50,11 +53,20 @@ public class Book {
         this.isbn = isbn;
     }
 
+    public BookStatus getBookStatus() {
+        return bookStatus;
+    }
+
+    public void setBookStatus(BookStatus bookStatus) {
+        this.bookStatus = bookStatus;
+    }
+
     public static class BookBuilder {
         private Integer id;
         private String isbn;
         private String title;
         private Author author;
+        private BookStatus bookStatus;
 
         private BookBuilder(){}
 
@@ -68,6 +80,7 @@ public class Book {
             book.setIsbn(isbn);
             book.setTitle(title);
             book.setAuthor(author);
+            book.setBookStatus(BookStatus.ACTIVE);
             return book;
         }
 
@@ -90,6 +103,12 @@ public class Book {
             this.author = author;
             return this;
         }
+
+        public BookBuilder withBookStatus(BookStatus bookStatus) {
+            this.bookStatus = bookStatus;
+            return this;
+        }
+
 
     }
 }
