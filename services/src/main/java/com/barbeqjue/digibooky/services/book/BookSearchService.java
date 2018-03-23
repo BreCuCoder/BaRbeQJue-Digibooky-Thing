@@ -2,6 +2,7 @@ package com.barbeqjue.digibooky.services.book;
 
 
 import com.barbeqjue.digibooky.domain.book.Book;
+import com.barbeqjue.digibooky.domain.book.BookStatus;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -22,22 +23,22 @@ public class BookSearchService {
         List<Book> searchResult = new ArrayList<>();
         for(Book book : allBooks) {
             if(searchParametersMap.containsKey("isbn")) {
-                if(BookSearchService.match(book.getIsbn(),searchParametersMap.get("isbn"))) {
+                if(BookSearchService.match(book.getIsbn(),searchParametersMap.get("isbn")) && book.getBookStatus() == BookStatus.ACTIVE) {
                     searchResult.add(book);
                 }
             }
             if(searchParametersMap.containsKey("title")) {
-                if(BookSearchService.match(book.getTitle(),searchParametersMap.get("title"))) {
+                if(BookSearchService.match(book.getTitle(),searchParametersMap.get("title")) && book.getBookStatus() == BookStatus.ACTIVE) {
                     searchResult.add(book);
                 }
             }
             if(searchParametersMap.containsKey("authorfirstname")) {
-                if(BookSearchService.match(book.getAuthor().getFirstName(),searchParametersMap.get("authorfirstname"))) {
+                if(BookSearchService.match(book.getAuthor().getFirstName(),searchParametersMap.get("authorfirstname")) && book.getBookStatus() == BookStatus.ACTIVE) {
                     searchResult.add(book);
                 }
             }
             if(searchParametersMap.containsKey("authorlastname")) {
-                if(BookSearchService.match(book.getAuthor().getLastName(),searchParametersMap.get("authorlastname"))) {
+                if(BookSearchService.match(book.getAuthor().getLastName(),searchParametersMap.get("authorlastname")) && book.getBookStatus() == BookStatus.ACTIVE) {
                     searchResult.add(book);
                 }
             }

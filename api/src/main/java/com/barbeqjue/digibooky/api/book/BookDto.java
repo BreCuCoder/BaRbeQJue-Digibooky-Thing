@@ -8,6 +8,7 @@ public class BookDto {
     private Integer id;
     private String isbn;
     private String title;
+    // TODO BookStatus and Author should be Dto versions and not actual domain objects
     private Author author;
     private BookStatus bookStatus;
     private boolean isLended;
